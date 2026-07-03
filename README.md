@@ -1,7 +1,6 @@
 # The Donkey Shorts — Frontend
 
 Statische Homepage der Rock-/Pop-Coverband **The Donkey Shorts** aus Karlsruhe.
-
 Reines HTML/CSS/JS, kein Build-Schritt nötig. Ein Backend mit Datenhaltung wird später ergänzt.
 
 ## Struktur
