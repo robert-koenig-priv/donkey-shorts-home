@@ -173,6 +173,10 @@ img { max-width: 100%; display: block; }
 .gig-info h3 { font-size: 1.5rem; font-family: 'Inter', sans-serif; font-weight: 700; }
 .gig-info p { color: var(--text-dim); font-size: .95rem; }
 .gig-meta { color: var(--text-dim); font-size: .9rem; text-align: right; }
+.gig-past-head { margin: 2.5rem 0 1rem; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--text-dim); }
+.gig.past, html.js-anim .gig.past.in { opacity: .55; }
+.gig.past:hover { border-color: var(--line); transform: none; }
+.gig.past .gig-date .mon { color: var(--text-dim); }
 .empty-state { color: var(--text-dim); background: var(--bg-card); border: 1px dashed var(--line); border-radius: var(--radius); padding: 2rem; text-align: center; }
 
 /* ---------- Band members ---------- */
