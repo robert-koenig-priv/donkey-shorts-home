@@ -27,8 +27,8 @@ python3 -m http.server 8000
 # → http://localhost:8000
 ```
 
-deployment on githup:
-https://robert-koenig-priv.github.io/band/index.html
+Deployment über GitHub Pages, erreichbar unter:
+https://donkey-shorts.com (Custom Domain via `CNAME`, DNS bei Cloudflare)
 
 
 (Ein Server wird benötigt, damit die eingebetteten YouTube-/Google-Frames und
