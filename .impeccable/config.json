@@ -1,0 +1,44 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "presse/bandbild.html"
+        ],
+        "createdAt": "2026-10-25T14:16:47.500Z",
+        "reason": "Claude: mirrors existing brand wordmark (index.html hero uses .grad on 'Donkey')"
+      },
+      {
+        "rule": "gradient-text",
+        "value": "*",
+        "files": [
+          "presse/flyer.html"
+        ],
+        "createdAt": "2026-10-25T14:16:47.522Z",
+        "reason": "Claude: mirrors existing brand wordmark (index.html hero uses .grad on 'Donkey')"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "files": [
+          "presse/bandbild.html"
+        ],
+        "createdAt": "2026-10-25T14:18:17.537Z",
+        "reason": "Claude: Inter is the site's existing body font (css/style.css), reused for brand consistency"
+      },
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "files": [
+          "presse/flyer.html"
+        ],
+        "createdAt": "2026-10-25T14:18:17.555Z",
+        "reason": "Claude: Inter is the site's existing body font (css/style.css), reused for brand consistency"
+      }
+    ]
+  }
+}

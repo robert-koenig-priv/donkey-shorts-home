@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- Vorlage für den Flyer (assets/downloads/donkey-shorts-flyer.pdf, A4).
+     Neu erzeugen mit: presse/build.sh -->
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  @page { size:A4; margin:0; }
+  :root { --bg:#0c0c10; --card:#1b1b24; --line:#2a2a36; --text:#ecebf0; --dim:#a0a0b0; --accent:#ff3d6e; --accent-2:#ffb627; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:210mm; height:297mm; overflow:hidden; background:var(--bg); color:var(--text); font-family:'Inter',sans-serif;
+               -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  .page { position:relative; width:210mm; height:297mm; padding:14mm 14mm 12mm; display:flex; flex-direction:column; }
+  .page::before { content:""; position:absolute; left:0; right:0; top:0; height:4mm; background:linear-gradient(90deg,var(--accent),var(--accent-2)); }
+
+  .head { display:flex; align-items:center; gap:8mm; }
+  .head img { width:46mm; height:46mm; border-radius:50%; }
+  .kicker { font-size:10pt; font-weight:800; text-transform:uppercase; letter-spacing:.2em; color:var(--accent); }
+  h1 { font-family:'Bebas Neue',sans-serif; font-weight:400; font-size:66pt; line-height:.88; letter-spacing:.01em; margin-top:2mm; }
+  .grad { color:var(--accent); } /* einfarbig: Verlaufsschrift wird in PDF-Viewern (z. B. Vorschau) fehlerhaft dargestellt */
+  .lead { font-size:12pt; color:var(--dim); margin-top:3mm; line-height:1.45; }
+
+  .members { display:grid; grid-template-columns:repeat(3,1fr); gap:3mm; margin-top:7mm; }
+  .m { position:relative; height:44mm; border-radius:3mm; overflow:hidden; }
+  .m img { width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.1) brightness(.9); }
+  .m::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,rgba(12,12,16,0) 50%,rgba(12,12,16,.92) 100%); }
+  .m .who { position:absolute; left:4mm; bottom:3mm; z-index:1; }
+  .m .name { font-family:'Bebas Neue',sans-serif; font-size:22pt; line-height:1; }
+  .m .role { font-size:7.5pt; font-weight:600; text-transform:uppercase; letter-spacing:.12em; color:var(--accent-2); }
+
+  h2 { font-family:'Bebas Neue',sans-serif; font-weight:400; font-size:24pt; letter-spacing:.03em; margin:7mm 0 3mm; }
+  .songs { display:flex; flex-wrap:wrap; gap:2mm; margin-bottom:6mm; }
+  .songs span { font-size:9pt; padding:1.2mm 3mm; border:1px solid var(--line); border-radius:10mm; background:var(--card); }
+  .songs span i { font-style:normal; color:var(--dim); }
+
+  .gig { margin-top:auto; border:1.5px dashed var(--accent-2); border-radius:3mm; padding:5mm 6mm; }
+  .gig .label { font-size:9pt; font-weight:800; text-transform:uppercase; letter-spacing:.2em; color:var(--accent-2); }
+  .gig .line { height:9mm; border-bottom:1px solid var(--line); }
+
+  .foot { display:flex; justify-content:space-between; align-items:flex-end; margin-top:7mm; font-size:11pt; }
+  .foot b { color:var(--accent-2); font-weight:800; font-size:14pt; }
+  .foot .dim { color:var(--dim); font-size:9pt; }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="head">
+    <img src="../assets/img/logo.png" alt="">
+    <div>
+      <div class="kicker">Rock &amp; Pop Covers · Karlsruhe</div>
+      <h1>The <span class="grad">Donkey</span><br>Shorts</h1>
+      <p class="lead">Handgemachte Rock- und Pop-Cover, die jeden Raum zum Kochen bringen. Von leisen Akustik-Momenten bis zur Vollgas-Tanzflächen-Party.</p>
+    </div>
+  </div>
+
+  <div class="members">
+    <div class="m"><img src="../assets/fotos/Annie.jpg" style="object-position:50% 25%"><div class="who"><div class="name">Annie</div><div class="role">Lead Vocals</div></div></div>
+    <div class="m"><img src="../assets/fotos/Rob.png"><div class="who"><div class="name">Rob</div><div class="role">Vocals · Akustikgitarre</div></div></div>
+    <div class="m"><img src="../assets/fotos/Joe.jpg"><div class="who"><div class="name">Joe</div><div class="role">Leadgitarre</div></div></div>
+    <div class="m"><img src="../assets/fotos/Klaus.jpg"><div class="who"><div class="name">Klaus</div><div class="role">Leadgitarre · Backing Vocals</div></div></div>
+    <div class="m"><img src="../assets/fotos/Andy.jpg" style="object-position:30% 50%"><div class="who"><div class="name">Andy</div><div class="role">Bass</div></div></div>
+    <div class="m"><img src="../assets/fotos/Thorsten.png" style="object-position:60% 50%"><div class="who"><div class="name">Torsten</div><div class="role">Drums</div></div></div>
+  </div>
+
+  <h2>Aus dem Repertoire</h2>
+  <div class="songs">
+    <span>Highway to Hell <i>· AC/DC</i></span>
+    <span>Come Together <i>· The Beatles</i></span>
+    <span>Don't Stop Believin' <i>· Journey</i></span>
+    <span>Shallow <i>· Lady Gaga</i></span>
+    <span>Money For Nothing <i>· Dire Straits</i></span>
+    <span>Valerie <i>· Teddy Swims</i></span>
+    <span>Ironic <i>· Alanis Morissette</i></span>
+    <span>All Right Now <i>· Free</i></span>
+    <span>Tie Your Mother Down <i>· Queen</i></span>
+    <span>Wicked Game <i>· HIM</i></span>
+    <span>Honky Tonk Women <i>· The Rolling Stones</i></span>
+    <span><i>… und viele mehr</i></span>
+  </div>
+
+  <div class="gig">
+    <div class="label">Live bei euch — Datum &amp; Location</div>
+    <div class="line"></div>
+    <div class="line"></div>
+  </div>
+
+  <div class="foot">
+    <div><b>donkey-shorts.com</b><br>Booking: info@donkey-shorts.com</div>
+    <div class="dim">Komplett In-Ear · eigene Technik nach Absprache</div>
+  </div>
+</div>
+</body>
+</html>
