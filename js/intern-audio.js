@@ -83,71 +83,6 @@
     return fromDirectoryListing(dir).catch(function () { return fromManifest(dir); });
   }
 
-  // --- Wiedergabe bei ausgeschaltetem Display ------------------------------
-  // Android/Chrome drosselt das Netzwerk, sobald das Display aus ist. Ein
-  // gestreamtes MP3 läuft dann nach kurzer Zeit leer und bleibt stehen.
-  // Darum wird beim ersten Abspielen die komplette Datei im Hintergrund
-  // geladen und der Player nahtlos auf die lokale Kopie (Blob-URL) umgestellt.
-  // Zusätzlich: Titel/Interpret auf dem Sperrbildschirm (Media Session) und
-  // es läuft immer nur ein Song gleichzeitig.
-  function setupPlayer(audio, t) {
-    var cached = false;
-
-    audio.addEventListener("play", function () {
-      document.querySelectorAll("audio").forEach(function (other) {
-        if (other !== audio && !other.paused) other.pause();
-      });
-      setMediaSession(audio, t);
-      if (!cached) {
-        cached = true;
-        cacheWhole(audio);
-      }
-    });
-  }
-
-  function cacheWhole(audio) {
-    var url = audio.currentSrc || audio.src;
-    fetch(url)
-      .then(function (res) {
-        if (!res.ok) throw new Error("download failed");
-        return res.blob();
-      })
-      .then(function (blob) {
-        var wasPlaying = !audio.paused;
-        var pos = audio.currentTime;
-        audio.addEventListener("loadedmetadata", function onMeta() {
-          audio.removeEventListener("loadedmetadata", onMeta);
-          try { audio.currentTime = pos; } catch (e) {}
-          if (wasPlaying) audio.play().catch(function () {});
-        });
-        audio.src = URL.createObjectURL(blob);
-        audio.load();
-      })
-      .catch(function () {
-        // Fallback: weiter streamen wie bisher.
-      });
-  }
-
-  function setMediaSession(audio, t) {
-    if (!("mediaSession" in navigator) || typeof MediaMetadata === "undefined") return;
-    navigator.mediaSession.metadata = new MediaMetadata({
-      title: t.title,
-      artist: t.artist || "The Donkey Shorts",
-      album: "The Donkey Shorts — Proberaum",
-      artwork: [{ src: "assets/img/logo.png", sizes: "1254x1254", type: "image/png" }]
-    });
-    var actions = {
-      play: function () { audio.play(); },
-      pause: function () { audio.pause(); },
-      seekbackward: function () { audio.currentTime = Math.max(0, audio.currentTime - 10); },
-      seekforward: function () { audio.currentTime = Math.min(audio.duration || Infinity, audio.currentTime + 10); },
-      seekto: function (d) { if (d && d.seekTime != null) audio.currentTime = d.seekTime; }
-    };
-    Object.keys(actions).forEach(function (k) {
-      try { navigator.mediaSession.setActionHandler(k, actions[k]); } catch (e) {}
-    });
-  }
-
   // --- Rendering ------------------------------------------------------------
   function render(container, dir, files) {
     files.sort(function (a, b) {
@@ -180,9 +115,11 @@
       var audio = document.createElement("audio");
       audio.controls = true;
       audio.preload = "none";
-      audio.src = dir + encodeURIComponent(file);
+      var source = document.createElement("source");
+      source.src = dir + encodeURIComponent(file);
+      source.type = "audio/mpeg";
+      audio.appendChild(source);
       audio.appendChild(document.createTextNode("Kein Audio-Support."));
-      setupPlayer(audio, t);
 
       track.appendChild(head);
       track.appendChild(audio);
