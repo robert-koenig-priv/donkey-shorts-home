@@ -46,7 +46,7 @@ relative Pfade sauber laden.)
 
 ## Build-Version (Git-Hook)
 
-Die auf der Contact-Seite angezeigte Version (`v0.1.<Buildnummer>`) wird vor jedem
+Die auf der Booking-Seite (`contact.html`) angezeigte Version (`v0.1.<Buildnummer>`) wird vor jedem
 Commit automatisch durch den Hook `.githooks/pre-commit` in `contact.html` gestempelt.
 Die Buildnummer entspricht der laufenden Commit-Anzahl, die Major.Minor (`BASE`)
 wird oben im Hook gepflegt.
