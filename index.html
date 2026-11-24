@@ -10,18 +10,20 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css?v=14">
-  <!-- Freundes-Modus: Probenaufnahmen nur mit ?freunde=esel42 sichtbar (wird im Browser gemerkt, ?freunde=aus setzt zurück) -->
+  <!-- Freundes-Modus: Probenaufnahmen nur mit ?bunker in der URL sichtbar (wird im Browser gemerkt, ?bunker=aus setzt zurück) -->
   <style>html:not(.friends) .friends-only { display: none !important; }</style>
   <script>
     (function () {
-      var CODE = 'esel42', KEY = 'ds_friends';
-      var p = new URLSearchParams(location.search).get('freunde');
+      var KEY = 'ds_friends';
+      var q = new URLSearchParams(location.search);
+      var on = q.has('bunker') && q.get('bunker') !== 'aus';
+      var off = q.get('bunker') === 'aus';
       try {
-        if (p === CODE) localStorage.setItem(KEY, '1');
-        else if (p === 'aus') localStorage.removeItem(KEY);
+        if (on) localStorage.setItem(KEY, '1');
+        else if (off) localStorage.removeItem(KEY);
         if (localStorage.getItem(KEY) === '1') document.documentElement.classList.add('friends');
       } catch (e) {
-        if (p === CODE) document.documentElement.classList.add('friends');
+        if (on) document.documentElement.classList.add('friends');
       }
     })();
   </script>
