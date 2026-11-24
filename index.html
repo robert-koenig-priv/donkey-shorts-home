@@ -4,12 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Donkey Shorts — Rock & Pop Coverband aus Karlsruhe</title>
-  <meta name="description" content="The Donkey Shorts — Rock & Pop Coverband aus Karlsruhe. Termine, Songs, Probenaufnahmen und Stage Rider.">
+  <meta name="description" content="The Donkey Shorts — Rock & Pop Coverband aus Karlsruhe. Termine, Songs und Stage Rider.">
   <link rel="icon" type="image/png" href="assets/img/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=12">
+  <link rel="stylesheet" href="css/style.css?v=14">
+  <!-- Freundes-Modus: Probenaufnahmen nur mit ?freunde=esel42 sichtbar (wird im Browser gemerkt, ?freunde=aus setzt zurück) -->
+  <style>html:not(.friends) .friends-only { display: none !important; }</style>
+  <script>
+    (function () {
+      var CODE = 'esel42', KEY = 'ds_friends';
+      var p = new URLSearchParams(location.search).get('freunde');
+      try {
+        if (p === CODE) localStorage.setItem(KEY, '1');
+        else if (p === 'aus') localStorage.removeItem(KEY);
+        if (localStorage.getItem(KEY) === '1') document.documentElement.classList.add('friends');
+      } catch (e) {
+        if (p === CODE) document.documentElement.classList.add('friends');
+      }
+    })();
+  </script>
 </head>
 <body>
 
@@ -24,7 +39,7 @@
         <li><a href="#band">Band</a></li>
         <li><a href="#aktuell">Aktuell</a></li>
         <li><a href="#songs">Songs</a></li>
-        <li><a href="#audio">Audio</a></li>
+        <li class="friends-only"><a href="#audio">Audio</a></li>
         <li><a href="#newsletter">News</a></li>
         <li><a href="stagerider.html">Stage</a></li>
         <li><a href="contact.html">Booking</a></li>
@@ -45,7 +60,7 @@
       <p class="lead">Handgemachte Rock- und Pop-Cover, die jeden Raum zum Kochen bringen. Von leisen Akustik-Momenten bis zur Vollgas-Tanzflächen-Party.</p>
       <div class="hero-actions">
         <a href="#aktuell" class="btn btn-primary">Nächster Auftritt</a>
-        <a href="#audio" class="btn btn-ghost">▶ Reinhören</a>
+        <a href="#audio" class="btn btn-ghost friends-only">▶ Reinhören</a>
       </div>
     </div>
   </header>
@@ -182,12 +197,16 @@
   </section>
 
   <!-- ===================== AUDIO ===================== -->
-  <section class="section alt" id="audio">
+  <section class="section alt friends-only" id="audio">
     <div class="container">
       <div class="section-head reveal">
         <span class="kicker">Audio</span>
         <h2>Reinhören</h2>
         <p>Frisch aus dem Proberaum: unsere ersten Probenaufnahmen. Ungeschliffen, aber mit viel Herz.</p>
+        <div class="play-controls">
+          <button type="button" class="btn btn-primary" id="playAllBtn" aria-pressed="false">▶ Alle abspielen</button>
+          <button type="button" class="btn btn-ghost" id="playNextBtn">⏭ Nächster Song</button>
+        </div>
       </div>
 
       <div class="audio-wrap audio-grid">
@@ -356,7 +375,7 @@
           <a href="#band">Band</a>
           <a href="#aktuell">Aktuell</a>
           <a href="#songs">Songs</a>
-          <a href="#audio">Audio</a>
+          <a href="#audio" class="friends-only">Audio</a>
           <a href="#newsletter">News</a>
           <a href="intern.html">Proberaum</a>
           <a href="stagerider.html">Stage Rider</a>
@@ -376,5 +395,6 @@
 
   <script src="js/songs.js?v=3"></script>
   <script src="js/main.js?v=4"></script>
+  <script src="js/audio-playlist.js?v=3"></script>
 </body>
 </html>

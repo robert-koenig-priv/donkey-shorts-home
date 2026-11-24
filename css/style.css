@@ -257,6 +257,10 @@ img { max-width: 100%; display: block; }
 .audio-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 .audio-grid .audio-card { padding: 1.4rem; }
 .audio-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.8rem; }
+.play-controls { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 1.4rem; }
+.play-controls .btn { cursor: pointer; }
+.audio-card { transition: border-color .3s, box-shadow .3s; }
+.audio-card.is-playing { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 8px 24px rgba(255,61,110,.18); }
 .audio-card h3 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.3rem; margin-bottom: 1rem; }
 .audio-artist { display: block; font-weight: 500; font-size: .9rem; color: var(--text-dim); margin-top: .15rem; }
 .sc-player { display: block; width: 100%; border: 0; border-radius: 8px; }
